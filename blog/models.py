@@ -29,7 +29,7 @@ class Items(models.Model):
     )
     name = models.CharField(max_length=200)
     text = models.TextField()
-    created_time = models.CharField(max_length=30, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     brand = models.CharField(max_length=50)
     audio = models.FileField(upload_to='musics/', 
                              blank=True, 
@@ -47,6 +47,10 @@ class Items(models.Model):
     teacher  = models.ForeignKey(Teacher,on_delete=models.CASCADE, 
                                  related_name="item",
                                  )
+    
+    fakultet = models.ForeignKey(Fakultet, on_delete=models.CASCADE, 
+                                 related_name="item",
+                                )
     
     def get_absolute_url(self):
         return reverse("items_detail", kwargs={"pk": self.pk})

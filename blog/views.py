@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
-from .models import Items
+from .models import Items, Fakultet
 import segno
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -38,6 +38,13 @@ class ItemsCreateView(LoginRequiredMixin, CreateView):
     context_object_name = 'item_create'
     fields = ['name', 'text', 'created_time', 'brand', 'audio','video', 'image', 'teacher']
 
+
+def fakultetlar(request):
+    fakultet = Fakultet.objects.all()
+    context = {
+        "fakultet": fakultet,
+    }
+    return render(request, 'fakultetlar.html', context)
 @csrf_protect
 def items_detail(request, pk):
     item = get_object_or_404(Items, pk=pk)
