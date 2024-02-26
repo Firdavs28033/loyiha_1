@@ -8,6 +8,8 @@ from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse
 from django.conf import settings
 import os
+# from hitcount.views import HitCountDetailView
+
 
 class ItemsListView(ListView):
     model = Items

@@ -2,6 +2,7 @@ from django.db import models
 import uuid
 from django.urls import reverse
 
+
 class Fakultet(models.Model):
     name = models.CharField(max_length=200)
     def __str__(self):

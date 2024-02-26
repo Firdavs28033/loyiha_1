@@ -1,137 +1,101 @@
-
+{% extends "base.html" %}
+{% load i18n %}
 {% load static %}
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Адаптивный Header с Bootstrap</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  
-</head>
-<body>
+{% load hitcount_tags %}
 
-  
-  <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#"><img id="logo" src="{% static 'images/all/logoakad.png' %}" alt="no"></a>
-    <p id="title"><b>{{item.fakultet}}</b></p>
-    
-    <div class="switch">
-      <a id="qwewq" class="btn image-button" href="#"><img id="moons" src="{% static 'images/png/sun.png' %}" alt=""  onclick="changeImage()" ></a>
+{% block title %}{{item.fakultet}}{% endblock title %}
+{% block content %}
+<div class="container">
+  <div class="wrapper">
+    <div class="photo">
+      {% if item.image %}
+      <img id="img" src="{{ item.image.url }}" alt="">
+      {% else %}
+      <p>Ushbu obyekt haqida serverga rasm yuklanmagan</p>
+      {% endif %}
     </div>
-    <form action="" method="post">
-      <select id="select" name="language">
-        <option value="en">
-          <img src="{% static 'images/png/uzb.png' %}" alt="Uzbekistan Flag" />Uz
-        </option>
-        <option value="fr">
-          <img src="{% static 'images/all/logo.png' %}" alt="France Flag" />Ru
-        </option>
-        <option value="es">
-          <img src="{% static 'images/all/logoakad.png' %}" alt="Spain Flag" />En
-        </option>
-      </select>
-    </form>
-  </nav>
 
-  <div class="container">
-    <div class="wrapper">
-      <div class="photo">
-        {% if item.image %}
-        <img id="img" src="{{ item.image.url }}" alt="">
-        {% else %}
-        <p>Ushbu obyekt haqida serverga rasm yuklanmagan</p>
-        {% endif %}
+    <div class="text">
+      <div class="scrollable-div">
+        <p id="namepotato">{{ item.name }}</p>
+        <p id="textbig">{{ item.text }}</p>
+        <p><b>{% blocktrans %}Chop etilgan vaqt{% endblocktrans %}:</b> {{ item.created_at }}</p>
       </div>
-
-      <div class="text">
-        <div class="scrollable-div">
-          <p id="namepotato">{{ item.name }}</p>
-          <p id="textbig">{{ item.text }}</p>
-          <p><b>Chop etilgan vaqt:</b> {{ item.created_at }}</p>
-        </div>
-        <div class="logo">
-          <button type="button"  id="log1" class="btn" data-toggle="modal" data-target="#exampleModalCenter1"><img src="{% static 'images/png/audio.png' %}" alt=""></button>
-          <button type="button" id="log2" class="btn" data-toggle="modal" data-target="#exampleModalCenter2"><img src="{% static 'images/png/movie.png' %}" alt=""></button>
-          <button type="button"  id="log3" class="btn" data-toggle="modal" data-target="#exampleModalCenter3"><img src="{% static "images/png/qr.png" %}" alt=""></button>
-        </div>
+      <div class="logo">
+        <button type="button"  id="log1" class="btn" data-toggle="modal" data-target="#exampleModalCenter1"><img src="{% static 'images/png/audio.png' %}" alt=""></button>
+        <button type="button" id="log2" class="btn" data-toggle="modal" data-target="#exampleModalCenter2"><img src="{% static 'images/png/movie.png' %}" alt=""></button>
+        <button type="button"  id="log3" class="btn" data-toggle="modal" data-target="#exampleModalCenter3"><img src="{% static "images/png/qr.png" %}" alt=""></button>
       </div>
     </div>
-    
   </div>
-
   
+</div>
 
 
 
-
-  <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-
-              <div class="modal-body" id="Audio">
-                <figure>
-                  <figcaption>Audio</figcaption>
-                  {% if item.audio %}
-                  <audio controls src="{{ item.audio.url }}"></audio>
-                  {% else %}
-                  <p> Audio kiritmadingiz</p>
-                  {% endif %}
-                  
-                </figure>
-                
-              </div>
-          </div>
-      </div>
-  </div>
-  <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
 
-            <div class="modal-body" id="Video">
-              <video width="320" height="240" controls>
-                {% if item.video %}
-                <source src="{{ item.video.url }}" type="video/mp4">
+            <div class="modal-body" id="Audio">
+              <figure>
+                <figcaption>Audio</figcaption>
+                {% if item.audio %}
+                <audio controls src="{{ item.audio.url }}"></audio>
                 {% else %}
-                <p>Video kiritmadingiz</p>
+                <p> Audio kiritmadingiz</p>
                 {% endif %}
-                Your browser does not support the video tag.
-              </video>
+                
+              </figure>
+              
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
 
-          <div class="modal-body" id="Qr">
-              
-              <a href="{% url 'download_qr_code' item.pk %}"><img id="pngqr" src="{{ qrcode }}">Donwload</a>
-            
+          <div class="modal-body" id="Video">
+            <video width="320" height="240" controls>
+              {% if item.video %}
+              <source src="{{ item.video.url }}" type="video/mp4">
+              {% else %}
+              <p>Video kiritmadingiz</p>
+              {% endif %}
+              Your browser does not support the video tag.
+            </video>
           </div>
       </div>
   </div>
 </div>
+<div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
 
-   <script>
-    function changeImage() {
-      const image = document.getElementById('moons');
-      const currentSrc = image.getAttribute('src');
-    
-      if (currentSrc === '{% static "images/png/sun.png" %}') {
-        image.src = '{% static "images/png/moon.png" %}';
-      } else {
-        image.src = '{% static "images/png/sun.png" %}';
-      }
+        <div class="modal-body" id="Qr">
+            
+            <a href="{% url 'download_qr_code' item.pk %}"><img id="pngqr" src="{{ qrcode }}">Donwload</a>
+          
+        </div>
+    </div>
+</div>
+</div>
+
+ <script>
+  function changeImage() {
+    const image = document.getElementById('moons');
+    const currentSrc = image.getAttribute('src');
+  
+    if (currentSrc === '{% static "images/png/sun.png" %}') {
+      image.src = '{% static "images/png/moon.png" %}';
+    } else {
+      image.src = '{% static "images/png/sun.png" %}';
     }
-  </script>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="{% static "js/script.js" %}"></script>
-</body>
-</html>
+  }
+</script>
 
 
 
+
+{% endblock content %}

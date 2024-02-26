@@ -1,14 +1,28 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock title %}
+{% load i18n %}
+{% block title %}{% blocktrans %}{% endblocktrans %} {% endblock title %}
 
 
 
 
 {% block content %}
+{% if user.is_authenticated %}
+<p>Hi {{user.username }}</p>
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+
+{% else %}
+<p> Siz login qilmagansiz</p>
+<a href="{% url 'login' %}">Login</a>
+{% endif %}
+
 
 {% for item in items_list %}
 <h1><a href="{% url 'items_detail' item.id %}">{{item.name}}</a> </h1>
 {% endfor %}
+
 
 {% endblock content %}
 

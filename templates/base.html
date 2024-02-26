@@ -1,18 +1,66 @@
+{% load static %}
+{% load i18n %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{item.fakultet}}</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  
+</head>
+<body>
 
-<h1><a href="{% url 'home' %}">Home</a></h1>
+  
+  <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#"><img id="logo" src="{% static 'images/all/logoakad.png' %}" alt="no"></a><br>
+    
+    <p id="title"><b>{% block title %}{% endblock title %}</b></p>
+    
+    <div class="switch">
+      <a id="qwewq" class="btn image-button" href="#"><img id="moons" src="{% static 'images/png/sun.png' %}" alt=""  onclick="changeImage()" ></a>
+    </div>
+    {% comment %} <form action="" method="post">
+      <select id="select" name="language">
+        <option value="en">
+          <img src="{% static 'images/png/uzb.png' %}" alt="Uzbekistan Flag" />Uz
+        </option>
+        <option value="fr">
+          <img src="{% static 'images/all/logo.png' %}" alt="France Flag" />Ru
+        </option>
+        <option value="es">
+          <img src="{% static 'images/all/logoakad.png' %}" alt="Spain Flag" />En
+        </option>
+      </select>
+    </form> {% endcomment %}
+    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+        <input name="next" type="hidden" value="{{ redirect_to }}">
+        <select name="language">
+            {% get_current_language as LANGUAGE_CODE %}
+            {% get_available_languages as LANGUAGES %}
+            {% get_language_info_list for LANGUAGES as languages %}
+            {% for language in languages %}
+                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %} >
+                    {{ language.name_local }}
+                </option>
+            {% endfor %}
+           
+        </select>
+        <input type="submit" value="O'tish">
+        
+    </form>
+  </nav>
+<h1><a href="{% url 'home' %}">{% blocktrans %} {% endblocktrans %}</a></h1>
 
-
-{% block title %}{% endblock title %}
-{% if user.is_authenticated %}
-<p>Hi {{user.username }}</p>
-<form method="post" action="{% url 'logout' %}">
-    {% csrf_token %}
-    <button type="submit">Logout</button>
-</form>
-
-{% else %}
-<p> Siz login qilmagansiz</p>
-<a href="{% url 'login' %}">Login</a>
-{% endif %}
 
 {% block content %}{% endblock content %}
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="{% static "js/script.js" %}"></script>
+</body>
+</html>
+
+
+
