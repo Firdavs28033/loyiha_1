@@ -1,50 +1,52 @@
-.navbar{
+.navbar {
   background-color: #e2e1e1;
 }
-#logo{
-  width: 150px;
-  height: 80px;
+
+#logo {
+  width: 160px;
+  height: 70px;
 }
 
-#title{
+#title {
   font-weight: 400;
   font-size: 40px;
   text-align: center;
   margin: 0 auto;
 }
 
-#qwewq{
-  
+#qwewq {
   float: right;
 }
-#textbig{
+
+#textbig {
   text-align: justify;
   margin-right: 10px;
   margin-left: 10px;
 }
-#namepotato{
+
+#namepotato {
   text-align: center;
   font-weight: 500;
   font-size: 30px;
 }
 
-.switch img{
+.switch img {
   height: 40px;
   width: 40px;
 }
-.lang{
+
+.lang {
   display: flex;
-  justify-content: space-between; /* Горизонтальное выравнивание по краям */
+  justify-content: space-between;
   align-items: center;
 }
-.dropdown-menu{
+
+.dropdown-menu {
   display: none;
   position: absolute;
 }
 
-
-
-.photo{
+.photo {
   margin-top: 3rem;
   margin-right: 10rem;
   border: 1px solid black;
@@ -52,16 +54,15 @@
   width: 600px;
   height: 740px;
 }
-#img{
+
+#img {
   height: 650px;
   width: 500px;
   display: flex;
   left: 30%;
 }
 
-
-
-.wrapper{
+.wrapper {
   display: flex;
   justify-content: space-around;
 }
@@ -70,16 +71,15 @@
   margin-top: 3rem;
   order: 2;
   width: 1000px;
-  height: 650px; 
-  overflow: auto; 
-  border: 1px solid #ccc; 
+  height: 650px;
+  overflow: auto;
+  border: 1px solid #ccc;
   padding: 10px;
 }
 
-
-
-
-#log1, #log2, #log3{
+#log1,
+#log2,
+#log3 {
   display: inline;
   width: 80px;
   height: 80px;
@@ -87,19 +87,18 @@
   background-color: rgb(245, 241, 241);
   margin: 20px 150px 20px 100px;
   cursor: pointer;
-
 }
 
-#log1{
+#log1 {
   cursor: pointer;
   background-position: center;
   border: none;
   color: white;
   display: inline-block;
   background-size: 80px;
-
 }
-#log1 img{
+
+#log1 img {
   display: inline;
   justify-content: center;
   align-items: center;
@@ -108,15 +107,17 @@
   margin: 0 auto;
 }
 
-#log2{
+#log2 {
   background-position: center;
   background-size: 80px;
   border: none;
-  color: white;;
+  color: white;
+  ;
   display: inline-block;
   cursor: pointer;
 }
-#log2 img{
+
+#log2 img {
   display: inline;
   margin: 0 auto;
   justify-content: center;
@@ -125,7 +126,7 @@
   height: 50px;
 }
 
-#log3{
+#log3 {
   background-size: 80px;
   background-position: center;
   border: none;
@@ -133,65 +134,66 @@
   display: inline-block;
   cursor: pointer;
 }
-#log3 img{
+
+#log3 img {
   display: inline;
   width: 80px;
   height: 80px;
   margin: -5px 40px 0px -10px;
 }
 
-
-
-#modalBodyContent video{
+#modalBodyContent video {
   width: 600px;
   height: 600px;
 }
-figure{
+
+figure {
   margin: 0;
   text-align: center;
 }
-figure audio{
-  display: block;
-  margin: 0 auto;
-}
-video{
+
+figure audio {
   display: block;
   margin: 0 auto;
 }
 
-
-#pngqr{
+video {
   display: block;
   margin: 0 auto;
 }
-.modal-body img{
+
+#pngqr {
+  display: block;
+  margin: 0 auto;
+}
+
+.modal-body img {
   height: 500px;
   width: 500px;
 }
-.modal-body a{
+
+.modal-body a {
   margin-left: 45%;
 }
-
-
-
 
 .dark-mode {
   color: #ffffff;
   background: rgb(59, 59, 59);
 }
-.dark-mode #log1{
-  background-color: rgb(126, 119, 119);
 
-}
-.dark-mode #log2{
+.dark-mode #log1 {
   background-color: rgb(126, 119, 119);
-
 }
-.dark-mode #log3{
+
+.dark-mode #log2 {
   background-color: rgb(126, 119, 119);
-
 }
-.dark-mode .navbar{
+
+.dark-mode #log3 {
+  background-color: rgb(126, 119, 119);
+}
+
+.dark-mode .navbar {
   background-color: rgb(126, 119, 119);
 }
 
@@ -201,4 +203,67 @@ video{
 
 .dark-mode .novbar-line {
   background-color: red;
+}
+
+@media (max-width: 768px) {
+  #logo {
+    width: 120px;
+    height: 50px;
+  }
+  #title {
+    font-size: 24px;
+  }
+  #textbig {
+    font-size: 14px;
+  }
+  #namepotato {
+    font-size: 24px;
+  }
+  .switch img {
+    height: 30px;
+    width: 30px;
+  }
+  .photo {
+    margin: 3rem auto;
+    width: 80%;
+    height: auto;
+  }
+  #img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+  }
+  .scrollable-div {
+    width: 90%;
+    height: auto;
+    overflow: auto;
+  }
+  #log1,
+  #log2,
+  #log3 {
+    width: 60px;
+    height: 60px;
+    margin: 10px;
+  }
+  #log1 img,
+  #log2 img,
+  #log3 img {
+    width: 40px;
+    height: 40px;
+  }
+  #modalBodyContent video {
+    width: 80%;
+    height: auto;
+  }
+  figure img {
+    width: 80%;
+    height: auto;
+  }
+  .modal-body a {
+    margin-left: 35%;
+  }
 }
