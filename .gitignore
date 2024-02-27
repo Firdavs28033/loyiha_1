@@ -3,7 +3,8 @@ env
 *.mp4
 *.mp4
 *.ogg
-# Byte-compiled / optimized / DLL files
+*.mp3
+ Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
