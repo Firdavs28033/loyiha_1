@@ -1,5 +1,5 @@
 {% load static %}
-{% load i18n %}
+{% comment %} {% load i18n %} {% endcomment %}
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -20,7 +20,7 @@
     <div class="switch">
       <a id="qwewq" class="btn image-button" href="#"><img id="moons" src="{% static 'images/png/sun.png' %}" alt=""  onclick="changeImage()" ></a>
     </div>
-    {% comment %} <form action="" method="post">
+    <form action="" method="post">
       <select id="select" name="language">
         <option value="en">
           <img src="{% static 'images/png/uzb.png' %}" alt="Uzbekistan Flag" />Uz
@@ -32,8 +32,8 @@
           <img src="{% static 'images/all/logoakad.png' %}" alt="Spain Flag" />En
         </option>
       </select>
-    </form> {% endcomment %}
-    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+    </form> 
+    {% comment %} <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
         <input name="next" type="hidden" value="{{ redirect_to }}">
         <select name="language">
             {% get_current_language as LANGUAGE_CODE %}
@@ -48,9 +48,9 @@
         </select>
         <input type="submit" value="O'tish">
         
-    </form>
+    </form> {% endcomment %}
   </nav>
-<h1><a href="{% url 'home' %}">{% blocktrans %} {% endblocktrans %}</a></h1>
+<h1><a href="{% url 'home' %}">home</a></h1>
 
 
 {% block content %}{% endblock content %}

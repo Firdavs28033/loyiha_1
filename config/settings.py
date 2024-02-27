@@ -31,8 +31,7 @@ INSTALLED_APPS = [
     'blog',
 
     #3rd apps
-    'modeltranslation',
-    'hitcount',
+    # 'modeltranslation',
 
 ]
 
@@ -45,7 +44,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # new
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -72,23 +71,23 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'baza',
-        'USER': 'postgres',
-        'PASSWORD': '12345678',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-
-    }
+   'default': {
+       'ENGINE': 'django.db.backends.sqlite3',
+       'NAME': BASE_DIR / 'db.sqlite3',
+   }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'baza',
+#         'USER': 'postgres',
+#         'PASSWORD': '12345678',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+
+#     }
+# }
 
 
 
@@ -135,16 +134,16 @@ USE_I18N = True
 
 USE_TZ = True
 
-from django.utils.translation import gettext_lazy as _
-LANGUAGES = [
-    ("uz", _("Uzbek")),
-    ("en", _("English")),
-    ("ru", _("Russian")),
-]
+# from django.utils.translation import gettext_lazy as _
+# LANGUAGES = [
+#     ("uz", _("Uzbek")),
+#     ("en", _("English")),
+#     ("ru", _("Russian")),
+# ]
 
-MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
+# MODELTRANSLATION_DEFAULT_LANGUAGE = 'uz'
 
-LOCALE_PATHS = [BASE_DIR / 'locale']
+# LOCALE_PATHS = [BASE_DIR / 'locale']
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
