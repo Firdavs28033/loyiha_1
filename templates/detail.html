@@ -92,6 +92,18 @@
       image.src = '{% static "images/png/sun.png" %}';
     }
   }
+
+  $('#exampleModalCenter2').on('hidden.bs.modal', function (e) {
+    let video = document.getElementById('Video');
+    let videoPlayer = video.querySelector('video');
+    videoPlayer.pause(); 
+  });
+
+  $('#exampleModalCenter1').on('hidden.bs.modal', function (e) {
+    let audio = document.getElementById('Audio');
+    let audioPlayer = audio.querySelector('audio');
+    audioPlayer.pause(); 
+  });
 </script>
 
 

@@ -7,57 +7,169 @@
   <title>{{item.fakultet}}</title>
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
-  
+
 </head>
 <body>
 
-  
-  <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#"><img id="logo" src="{% static 'images/all/logoakad.png' %}" alt="no"></a><br>
-    
+  <nav class="navbar navbar-expand-md" style="height: 110px;">
+    <div class="navbar-brand">
+      <img id="logo" src="{% static 'images/all/logoakad.png' %}" alt="no">
+      <p class="nov" style="font-size:18px; text-align: center;">Smart Akademiya</p>
+    </div>
+
     <p id="title"><b>{% block title %}{% endblock title %}</b></p>
     
     <div class="switch">
       <a id="qwewq" class="btn image-button" href="#"><img id="moons" src="{% static 'images/png/sun.png' %}" alt=""  onclick="changeImage()" ></a>
     </div>
-    {% comment %} <form action="" method="post">
-      <select id="select" name="language">
-        <option value="en">
-          <img src="{% static 'images/png/uzb.png' %}" alt="Uzbekistan Flag" />Uz
-        </option>
-        <option value="fr">
-          <img src="{% static 'images/all/logo.png' %}" alt="France Flag" />Ru
-        </option>
-        <option value="es">
-          <img src="{% static 'images/all/logoakad.png' %}" alt="Spain Flag" />En
-        </option>
+    {% comment %} <form action="{% url 'set_language' %}" method="post">
+      {% csrf_token %}
+      <input name="next" type="hidden" value="/" />
+
+      <select class="selectpicker" name="language" style="width: auto;" onchange="this.form.submit()">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        {% for language in languages %}
+
+            <option
+              value="{{ language.code }}"
+              {% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}
+              data-content='<img src="/static/images/flags/{{ language.code }}.gif"></span>
+              <span style="display:inline-block; width:100px; padding-left: 10px; text-shadow:none">
+                {{ language.name_local }}
+                <!-- span style="color:#999;">&nbsp;[{{ language.code }}]</span -->
+              </span>'>
+              {{ language.code }}
+            </option>
+
+        {% endfor %}
       </select>
-    </form>  {% endcomment %}
-    <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
-        <input name="next" type="hidden" value="{{ redirect_to }}">
-        <select name="language">
-            {% get_current_language as LANGUAGE_CODE %}
-            {% get_available_languages as LANGUAGES %}
-            {% get_language_info_list for LANGUAGES as languages %}
-            {% for language in languages %}
-                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %} >
-                    {{ language.name_local }}
-                </option>
-            {% endfor %}
-           
+  </form> {% endcomment %}
+  <form action="{% url 'set_language' %}" method="post">
+    {% csrf_token %}
+    <input name="next" type="hidden" value="/" />
+
+    <select class="selectpicker" name="language" style="width: auto;" onchange="this.form.submit()">
+      {% get_current_language as LANGUAGE_CODE %}
+      {% get_available_languages as LANGUAGES %}
+      {% get_language_info_list for LANGUAGES as languages %}
+      {% for language in languages %}
+
+          <option
+            value="{{ language.code }}"
+            {% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}
+            data-content='<img src="/static/images/flags/{{ language.code }}.png"></span>
+            <span style="display:inline-block; width:100px; padding-left: 10px; text-shadow:none">
+              {{ language.name_local }}
+              <span style="color:#999;">&nbsp;[{{ language.code }}]</span>
+            </span>'>
+            {{ language.code }}
+          </option>
+
+      {% endfor %}
+    </select>
+</form>
+  {% comment %} <li class="dropdown" id="language-switcher">
+    <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="/" />
+
+        <select class="selectpicker" name="language" style="width: auto;" onchange="this.form.submit()">
+          {% get_current_language as LANGUAGE_CODE %}
+          {% get_available_languages as LANGUAGES %}
+          {% get_language_info_list for LANGUAGES as languages %}
+          {% for language in languages %}
+
+              <option
+                value="{{ language.code }}"
+                {% if language.code == LANGUAGE_CODE %} selected="selected"{% endif %}
+                data-content='<img src="{% static "images/png/{{ language.code }}.png" %}">
+                <span style="display:inline-block; width:100px; padding-left: 10px; text-shadow:none">
+                  {{ language.name_local }}
+                  <!-- span style="color:#999;">&nbsp;[{{ language.code }}]</span -->
+                </span>'>
+                {{ language.code }}
+              </option>
+
+          {% endfor %}
         </select>
-        <input type="submit" value="O'tish">
-        
     </form>
+</li> {% endcomment %}
+
   </nav>
 <h1><a href="{% url 'home' %}"></a></h1>
 
+<style>
+  .dropbtn {
+    padding: 11px;
+    cursor: pointer;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 140px;
+  }
+  
+  .dropbtn {
+    background: url('https://icons.iconarchive.com/icons/custom-icon-design/round-world-flags/16/Uzbekistan-icon.png') no-repeat left center;
+    padding-left: 25px;
+    width: 40px;
+  }
+  
+  .dropbtn::after {
+    background: rgba(0, 0, 0, 0) url("https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_down_48px-16.png") no-repeat scroll center center;
+    content: "";
+    height: 16px;
+    position: absolute;
+    right: 0;
+    top: 7px;
+    width: 16px;
+  }
+  
+  .dropdown-content a:first-child {
+    background: url('https://icons.iconarchive.com/icons/custom-icon-design/round-world-flags/16/Uzbekistan-icon.png') no-repeat left center;
+  }
+  
+  .dropdown-content a:nth-child(2) {
+    background: url('http://icons.iconarchive.com/icons/custom-icon-design/flag-3/16/Russia-Flag-icon.png') no-repeat left center;
+  }
+  
+  .dropdown-content a:last-child {
+    background: url('https://icons.iconarchive.com/icons/fatcow/farm-fresh/16/flag-usa-icon.png') no-repeat left center;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 2px 0 2px 25px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+  
+
+</style>
 
 {% block content %}{% endblock content %}
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="{% static "js/script.js" %}"></script>
 </body>
 </html>
