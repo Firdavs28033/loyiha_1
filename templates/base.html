@@ -20,7 +20,7 @@
     <div class="switch">
       <a id="qwewq" class="btn image-button" href="#"><img id="moons" src="{% static 'images/png/sun.png' %}" alt=""  onclick="changeImage()" ></a>
     </div>
-    <form action="" method="post">
+    {% comment %} <form action="" method="post">
       <select id="select" name="language">
         <option value="en">
           <img src="{% static 'images/png/uzb.png' %}" alt="Uzbekistan Flag" />Uz
@@ -32,7 +32,7 @@
           <img src="{% static 'images/all/logoakad.png' %}" alt="Spain Flag" />En
         </option>
       </select>
-    </form> 
+    </form>  {% endcomment %}
     <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
         <input name="next" type="hidden" value="{{ redirect_to }}">
         <select name="language">
