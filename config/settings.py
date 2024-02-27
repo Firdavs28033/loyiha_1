@@ -31,7 +31,7 @@ INSTALLED_APPS = [
     'blog',
 
     #3rd apps
-    # 'modeltranslation',
+    'modeltranslation',
 
 ]
 
