@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-28 21:06+0500\n"
+"POT-Creation-Date: 2024-02-28 21:31+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1258,9 +1258,13 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: templates/base.html:19
+#: templates/base.html:20
 msgid "Smart Akademiya"
 msgstr "Смарт Академия"
+
+#: templates/detail.html:77
+msgid "Yuklash olish"
+msgstr "Скачать"
 
 #: templates/home.html:24
 msgid "Ro`yxat"
