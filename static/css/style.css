@@ -53,8 +53,8 @@
   height: 740px;
 }
 #img{
-  height: 650px;
-  width: 500px;
+  height: 740;
+  width: 600px;
   display: flex;
   left: 30%;
 }
@@ -143,8 +143,8 @@
 
 
 #modalBodyContent video{
-  width: 600px;
-  height: 600px;
+  width: 1000px;
+  height: 1000px;
 }
 figure{
   margin: 0;
@@ -163,15 +163,17 @@ video{
 #pngqr{
   display: block;
   margin: 0 auto;
+  margin-left: -3.5%;
 }
 .modal-body img{
   height: 500px;
   width: 500px;
 }
-.modal-body a{
-  margin-left: 45%;
-}
 
+#qrtext{
+  text-align: center;
+  font-size: 30px;
+}
 
 
 
@@ -201,4 +203,36 @@ video{
 
 .dark-mode .novbar-line {
   background-color: red;
+}
+.custom-select {
+  appearance: none; /* Remove default appearance */
+  -webkit-appearance: none; /* For older versions of Safari */
+  -moz-appearance: none; /* For older versions of Firefox */
+  padding: 10px; /* Add padding for better visual appearance */
+  font-size: 16px; /* Set font size */
+  border: 1px solid #ccc; /* Add border */
+  border-radius: 5px; /* Add border radius */
+  background-color: #fff; /* Set background color */
+  width: 200px; /* Set width */
+  height: 45px;
+  margin-top: 6%;
+}
+
+.custom-select:focus {
+  outline: none; /* Remove focus outline */
+  border-color: #007bff; /* Change border color on focus */
+}
+
+/* Style options */
+.custom-select option {
+  background-color: #fff; /* Set background color */
+  color: #333; /* Set text color */
+}
+option{
+  text-align: center;
+  padding: 2px;
+  
+}
+#textqr{
+  text-align: center;
 }

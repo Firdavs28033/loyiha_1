@@ -40,3 +40,16 @@ document.getElementById('button2').addEventListener('click', function() {
     openModal('button2');
 });
 
+document.addEventListener("DOMContentLoaded", function() {
+    // Слушаем событие при закрытии модального окна с аудио
+    $('#exampleModalCenter1').on('hidden.bs.modal', function (e) {
+      var audioPlayer = document.getElementById('Audio');
+      audioPlayer.pause();
+    });
+  
+    // Слушаем событие при закрытии модального окна с видео
+    $('#exampleModalCenter2').on('hidden.bs.modal', function (e) {
+      var videoPlayer = document.getElementById('Video');
+      videoPlayer.pause();
+    })
+});

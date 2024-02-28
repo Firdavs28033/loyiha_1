@@ -55,8 +55,8 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
 
-          <div class="modal-body" id="Video">
-            <video width="320" height="240" controls>
+          <div style="width:100%; height:100%;" class="modal-body" id="Video">
+            <video width="100%" height="100%" controls>
               {% if item.video %}
               <source src="{{ item.video.url }}" type="video/mp4">
               {% else %}
@@ -74,7 +74,7 @@
 
         <div class="modal-body" id="Qr">
             
-            <a href="{% url 'download_qr_code' item.pk %}"><img id="pngqr" src="{{ qrcode }}">Donwload</a>
+            <a href="{% url 'download_qr_code' item.pk %}"><img id="pngqr" src="{{ qrcode }}"><p id='qrtext'>Yuklash</p></a>
           
         </div>
     </div>
@@ -92,6 +92,20 @@
       image.src = '{% static "images/png/sun.png" %}';
     }
   }
+  document.addEventListener("DOMContentLoaded", function() {
+    // Слушаем событие при закрытии модального окна с аудио
+    $('#exampleModalCenter2').on('namehidden.bs.modal', function (e) {
+      let video = document.getElementById('Video');
+      let videoPlayer = video.querySelector('video');
+      videoPlayer.pause(); 
+    });
+
+    $('#exampleModalCenter1').on('hidden.bs.modal', function (e) {
+      let audio = document.getElementById('Audio');
+      let audioPlayer = audio.querySelector('audio');
+      audioPlayer.pause(); 
+    });
+  });
 </script>
 
 

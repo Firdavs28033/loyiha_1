@@ -12,13 +12,17 @@
 <body>
 
   
-  <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#"><img id="logo" src="{% static 'images/all/logoakad.png' %}" alt="no"></a><br>
+  <nav class="navbar navbar-expand-lg" style="height:120px;">
+    
+    <div class="navbar-brand">
+      <img id="logo" src="{% static 'images/all/logoakad.png' %}"  alt="no">
+      <p class="nov" style="font-size:18px; text-align: center; margin:0;">{% blocktrans %}Smart Akademiya{% endblocktrans %} </p>
+    </div>
     
     <p id="title"><b>{% block title %}{% endblock title %}</b></p>
     
     <div class="switch">
-      <a id="qwewq" class="btn image-button" href="#"><img id="moons" src="{% static 'images/png/sun.png' %}" alt=""  onclick="changeImage()" ></a>
+      <a id="qwewq" onclick="changeImage()" class="btn image-button" href="#"><img id="moons" src="{% static 'images/png/sun.png' %}" alt=""   ></a>
     </div>
     {% comment %} <form action="" method="post">
       <select id="select" name="language">
@@ -35,18 +39,18 @@
     </form>  {% endcomment %}
     <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
         <input name="next" type="hidden" value="{{ redirect_to }}">
-        <select name="language">
+        <select class="custom-select" name="language" id="langputter" >
             {% get_current_language as LANGUAGE_CODE %}
             {% get_available_languages as LANGUAGES %}
             {% get_language_info_list for LANGUAGES as languages %}
             {% for language in languages %}
-                <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %} >
-                    {{ language.name_local }}
+                <option   value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected {% endif %} >
+                  {{ language.name_local }}
                 </option>
             {% endfor %}
            
         </select>
-        <input type="submit" value="O'tish">
+        <input style="margin-top: 5%;" class="btn btn-secondary" type="submit" value="O'tish">
         
     </form>
   </nav>

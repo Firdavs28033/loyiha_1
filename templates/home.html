@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}{% blocktrans %}{% endblocktrans %} {% endblock title %}
+{% block title %} {% endblock title %}
 
 
 
 
 {% block content %}
-{% if user.is_authenticated %}
+{% comment %} {% if user.is_authenticated %}
 <p>Hi {{user.username }}</p>
 <form method="post" action="{% url 'logout' %}">
     {% csrf_token %}
@@ -16,13 +16,34 @@
 {% else %}
 <p> Siz login qilmagansiz</p>
 <a href="{% url 'login' %}">Login</a>
-{% endif %}
+{% endif %} {% endcomment %}
 
 
-{% for item in items_list %}
-<h1><a href="{% url 'items_detail' item.id %}">{{item.name}}</a> </h1>
-{% endfor %}
+<div  class="container-fluid p-5">
+    <h2 class="text-center">{% blocktrans %}Ro`yxat{% endblocktrans %} </h2>
+    <p class="text-center"></p>            
+    <table class="table table-dark">
+      <thead class="table-dark">
+        <tr>
+          <th>{% blocktrans %}Nomi{% endblocktrans %} </th>
+          <th>{% blocktrans %}Fakultet{% endblocktrans %} </th>
+          <th>{% blocktrans %}O`qituvchi{% endblocktrans %} </th>
+          <th>{% blocktrans %}Yaratilgan vaqti{% endblocktrans %} </th>
+        </tr>
+      </thead>
+      <tbody class="table-secondary text-dark">
+        <tr >
+          {% for item in items_list %}
+          <td><a href="{% url 'items_detail' item.id %}">{{item.name}}</a></td>
+          <td>{{item.fakultet}}</td>
+          <td>{{item.teacher}}</td>
+          <td>{{item.created_at}}</td>
+          {% endfor %}
+        </tr>
 
+      </tbody>
+    </table>
+  </div>
 
 {% endblock content %}
 
