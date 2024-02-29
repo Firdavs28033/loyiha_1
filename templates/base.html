@@ -25,19 +25,6 @@
     <div class="switch">
       <a id="qwewq" onclick="changeImage()" class="btn image-button" href="#"><img id="moons" src="{% static 'images/png/sun.png' %}" alt=""   ></a>
     </div>
-    {% comment %} <form action="" method="post">
-      <select id="select" name="language">
-        <option value="en">
-          <img src="{% static 'images/png/uzb.png' %}" alt="Uzbekistan Flag" />Uz
-        </option>
-        <option value="fr">
-          <img src="{% static 'images/all/logo.png' %}" alt="France Flag" />Ru
-        </option>
-        <option value="es">
-          <img src="{% static 'images/all/logoakad.png' %}" alt="Spain Flag" />En
-        </option>
-      </select>
-    </form>  {% endcomment %}
     <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
         <input name="next" type="hidden" value="{{ redirect_to }}">
         <select class="custom-select" name="language" id="langputter" >
@@ -59,7 +46,21 @@
 
 
 {% block content %}{% endblock content %}
+  <script>
+    function darkmode() {
+      const body = document.body
+      const wadDarkmode = localStorage.getItem('darkmode') === 'false'
 
+      localStorage.setItem('darkmode', !wadDarkmode)
+      body.classList.toggle('dark-mode', !wadDarkmode)
+}
+
+document.querySelector('.image-button').addEventListener('click', darkmode);
+function onload(){
+    document.body.classList.toggle('dark-mode', localStorage.getItem('darkmode') === 'true')
+}
+document.addEventListener('DOMContentLoaded', onload());
+</script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

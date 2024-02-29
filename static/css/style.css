@@ -21,6 +21,9 @@
   text-align: justify;
   margin-right: 10px;
   margin-left: 10px;
+  overflow-x: auto; /* Позволяет горизонтальную прокрутку, если содержимое превышает размеры контейнера */
+  overflow-y: hidden; /* Скрывает вертикальную прокрутку */
+  white-space: nowrap; /* Запрещает перенос содержимого на новую строку */
 }
 #namepotato{
   text-align: center;
