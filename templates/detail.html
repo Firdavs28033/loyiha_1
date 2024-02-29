@@ -1,7 +1,6 @@
 {% extends "base.html" %}
-{% load i18n %}
 {% load static %}
-{% load hitcount_tags %}
+{% load i18n %}
 
 {% block title %}{{item.fakultet}}{% endblock title %}
 {% block content %}
@@ -19,7 +18,7 @@
       <div class="scrollable-div">
         <p id="namepotato">{{ item.name }}</p>
         <p id="textbig">{{ item.text }}</p>
-        <p><b>{% blocktrans %}Chop etilgan vaqt{% endblocktrans %}:</b> {{ item.created_at }}</p>
+        <p><b>{% blocktrans %}Chop etilgan vaqt{% endblocktrans %}: </b> {{ item.created_at }}</p>
       </div>
       <div class="logo">
         <button type="button"  id="log1" class="btn" data-toggle="modal" data-target="#exampleModalCenter1"><img src="{% static 'images/png/audio.png' %}" alt=""></button>
@@ -28,7 +27,7 @@
       </div>
     </div>
   </div>
-  
+
 </div>
 
 
@@ -36,7 +35,9 @@
 <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-
+            <div class="modal-header">
+              <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
             <div class="modal-body" id="Audio">
               <figure>
                 <figcaption>Audio</figcaption>
@@ -54,28 +55,35 @@
 </div>
 <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-
-          <div class="modal-body" id="Video">
-            <video width="320" height="240" controls>
-              {% if item.video %}
-              <source src="{{ item.video.url }}" type="video/mp4">
-              {% else %}
-              <p>Video kiritmadingiz</p>
-              {% endif %}
-              Your browser does not support the video tag.
-            </video>
-          </div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close"></button>
       </div>
+      <div style="width:100%; height:100%;" class="modal-body" id="Video">
+        <video width="100%" height="100%" controls>
+          {% if item.video %}
+          <source src="{{ item.video.url }}" type="video/mp4">
+          {% else %}
+          <p>Video kiritmadingiz</p>
+          {% endif %}
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
   </div>
 </div>
+
+
 <div class="modal fade" id="exampleModalCenter3" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close"></button>
+        </div>
 
         <div class="modal-body" id="Qr">
             
-            <a href="{% url 'download_qr_code' item.pk %}"><img id="pngqr" src="{{ qrcode }}">Donwload</a>
+            <a href="{% url 'download_qr_code' item.pk %}"><img id="pngqr" src="{{ qrcode }}"><p id='qrtext'>{% blocktrans %}Yuklash olish{% endblocktrans %} </p></a>
           
         </div>
     </div>
@@ -93,6 +101,21 @@
       image.src = '{% static "images/png/sun.png" %}';
     }
   }
+  document.addEventListener("DOMContentLoaded", function() {
+    // Слушаем событие при закрытии модального окна с аудио
+    $('#exampleModalCenter2').on('hidden.bs.modal', function (e) {
+      let video = document.getElementById('Video');
+      let videoPlayer = video.querySelector('video');
+      videoPlayer.pause(); 
+    });
+
+    $('#exampleModalCenter1').on('hidden.bs.modal', function (e) {
+      let audio = document.getElementById('Audio');
+      let audioPlayer = audio.querySelector('audio');
+      audioPlayer.pause(); 
+    });
+  });
+  
 </script>
 
 

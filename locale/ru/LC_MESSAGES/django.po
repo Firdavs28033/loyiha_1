@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-26 09:57+0500\n"
+"POT-Creation-Date: 2024-02-28 21:55+0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,15 +20,15 @@ msgstr ""
 "n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || "
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: config/settings.py:140
+#: config/settings.py:139
 msgid "Uzbek"
 msgstr ""
 
-#: config/settings.py:141
+#: config/settings.py:140
 msgid "English"
 msgstr ""
 
-#: config/settings.py:142
+#: config/settings.py:141
 msgid "Russian"
 msgstr ""
 
@@ -1258,11 +1258,34 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: templates/base.html:50
-msgid "Home "
-msgstr "Dom"
+#: templates/base.html:20
+msgid "Smart Akademiya"
+msgstr "Смарт Академия"
 
-#: templates/detail.html:22
+#: templates/detail.html:21
 msgid "Chop etilgan vaqt"
-msgstr "ruschasi"
+msgstr "Время создания"
 
+#: templates/detail.html:77
+msgid "Yuklash olish"
+msgstr "Скачать"
+
+#: templates/home.html:24
+msgid "Ro`yxat"
+msgstr "Список"
+
+#: templates/home.html:29
+msgid "Nomi"
+msgstr "Имя"
+
+#: templates/home.html:30
+msgid "Fakultet"
+msgstr "Факультет"
+
+#: templates/home.html:31
+msgid "O`qituvchi"
+msgstr "Учитель"
+
+#: templates/home.html:32
+msgid "Yaratilgan vaqti"
+msgstr "Время создания"

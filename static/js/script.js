@@ -3,17 +3,6 @@
 
 
 
-function darkmode() {
-    const body = document.body
-    const wadDarkmode = localStorage.getItem('darkmode') === 'true'
-
-    localStorage.setItem('darkmode', !wadDarkmode)
-    body.classList.toggle('dark-mode', !wadDarkmode)
-
-
-}
-
-document.querySelector('.image-button').addEventListener('click', darkmode)
 
 
 
@@ -39,4 +28,28 @@ document.getElementById('button1').addEventListener('click', function() {
 document.getElementById('button2').addEventListener('click', function() {
     openModal('button2');
 });
+document.addEventListener("DOMContentLoaded", function() {
+    // Слушаем событие при закрытии модального окна с аудио
+    $('#exampleModalCenter2').on('namehidden.bs.modal', function (e) {
+      let video = document.getElementById('Video');
+      let videoPlayer = video.querySelector('video');
+      videoPlayer.pause(); 
+    });
 
+    $('#exampleModalCenter1').on('hidden.bs.modal', function (e) {
+      let audio = document.getElementById('Audio');
+      let audioPlayer = audio.querySelector('audio');
+      audioPlayer.pause(); 
+    });
+  });
+  $('#exampleModalCenter2').on('hidden.bs.modal', function (e) {
+    let video = document.getElementById('Video');
+    let videoPlayer = video.querySelector('video');
+    videoPlayer.pause(); 
+  });
+
+  $('#exampleModalCenter1').on('hidden.bs.modal', function (e) {
+    let audio = document.getElementById('Audio');
+    let audioPlayer = audio.querySelector('audio');
+    audioPlayer.pause(); 
+  });
