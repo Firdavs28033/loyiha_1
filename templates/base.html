@@ -60,6 +60,31 @@ function onload(){
     document.body.classList.toggle('dark-mode', localStorage.getItem('darkmode') === 'true')
 }
 document.addEventListener('DOMContentLoaded', onload());
+
+function changeImage() {
+  const image = document.getElementById('moons');
+  const currentSrc = image.getAttribute('src');
+
+  if (currentSrc === '{% static "images/png/sun.png" %}') {
+    image.src = '{% static "images/png/moon.png" %}';
+  } else {
+    image.src = '{% static "images/png/sun.png" %}';
+  }
+}
+document.addEventListener("DOMContentLoaded", function() {
+  // Слушаем событие при закрытии модального окна с аудио
+  $('#exampleModalCenter2').on('hidden.bs.modal', function (e) {
+    let video = document.getElementById('Video');
+    let videoPlayer = video.querySelector('video');
+    videoPlayer.pause(); 
+  });
+
+  $('#exampleModalCenter1').on('hidden.bs.modal', function (e) {
+    let audio = document.getElementById('Audio');
+    let audioPlayer = audio.querySelector('audio');
+    audioPlayer.pause(); 
+  });
+});
 </script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
